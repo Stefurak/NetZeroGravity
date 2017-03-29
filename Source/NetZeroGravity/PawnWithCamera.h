@@ -35,6 +35,8 @@ protected:	// Called when the game starts or when spawned
 	//Input functions
 	void MoveUp(float AxisValue);
 	void MoveRight(float AxisValue);
+	
 	void ZoomIn();
+	
 	void ZoomOut();
 };

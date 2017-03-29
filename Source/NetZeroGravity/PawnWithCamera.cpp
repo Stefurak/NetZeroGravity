@@ -62,6 +62,7 @@ void APawnWithCamera::Tick( float DeltaTime )
 			FVector NewLocation = GetActorLocation();
 			NewLocation += GetActorUpVector() * MovementInput.X * DeltaTime;
 			NewLocation += GetActorRightVector() * MovementInput.Y * DeltaTime;
+			
 			SetActorLocation(NewLocation);
 		}
 	}
