@@ -12,14 +12,14 @@ APawnWithCamera::APawnWithCamera()
 
 	//Create our components
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
-	OurCameraSpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraSpringArm"));
-	OurCameraSpringArm->SetupAttachment(RootComponent);
-	OurCameraSpringArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 80.0f), FRotator(-90.0f, 0.0f, 0.0f));
-	OurCameraSpringArm->TargetArmLength = 600.f;
-	OurCameraSpringArm->bEnableCameraLag = true;
-	OurCameraSpringArm->CameraLagSpeed = 300.0f;
-	OurCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("GameCamera"));
-	OurCamera->SetupAttachment(OurCameraSpringArm, USpringArmComponent::SocketName);
+	//OurCameraSpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraSpringArm"));
+	//OurCameraSpringArm->SetupAttachment(RootComponent);
+	//OurCameraSpringArm->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 80.0f), FRotator(-90.0f, 0.0f, 0.0f));
+	//OurCameraSpringArm->TargetArmLength = 600.f;
+	//OurCameraSpringArm->bEnableCameraLag = true;
+	//OurCameraSpringArm->CameraLagSpeed = 300.0f;
+	//OurCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("GameCamera"));
+	//OurCamera->SetupAttachment(OurCameraSpringArm, USpringArmComponent::SocketName);
 
 	//Take control of the default Player
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
@@ -49,8 +49,8 @@ void APawnWithCamera::Tick( float DeltaTime )
 		}
 		ZoomFactor = FMath::Clamp<float>(ZoomFactor, 0.0f, 1.0f);
 		//Blend our camera's FOV and our SpringArm's length based on ZoomFactor
-		OurCamera->FieldOfView = FMath::Lerp<float>(90.0f, 120.0f, ZoomFactor);
-		OurCameraSpringArm->TargetArmLength = FMath::Lerp<float>(400.0f, 500.0f, ZoomFactor);
+		//OurCamera->FieldOfView = FMath::Lerp<float>(90.0f, 120.0f, ZoomFactor);
+		//OurCameraSpringArm->TargetArmLength = FMath::Lerp<float>(400.0f, 500.0f, ZoomFactor);
 	}	
 
 	//Handle movement based on our "MoveX" and "MoveY" axes
@@ -86,12 +86,14 @@ void APawnWithCamera::SetupPlayerInputComponent(class UInputComponent* InputComp
 //Input functions
 void APawnWithCamera::MoveUp(float AxisValue)
 {
-	MovementInput.X = FMath::Clamp<float>(AxisValue, -1.0f, 1.0f);
+	
+	MovementInput.X = FMath::Clamp<float>(AxisValue, -1.0f, 1.0f) * 0.1f;
 }
 
 void APawnWithCamera::MoveRight(float AxisValue)
 {
-	MovementInput.Y = FMath::Clamp<float>(AxisValue, -1.0f, 1.0f);
+	
+	MovementInput.Y = FMath::Clamp<float>(AxisValue, -1.0f, 1.0f) * 0.1f;
 }
 
 void APawnWithCamera::ZoomIn()
