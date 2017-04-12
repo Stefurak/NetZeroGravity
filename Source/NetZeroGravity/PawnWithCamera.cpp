@@ -58,7 +58,7 @@ void APawnWithCamera::Tick( float DeltaTime )
 		if (!MovementInput.IsZero())
 		{
 			//Scale our movement input axis values by 100 units per second
-			MovementInput = MovementInput.SafeNormal() * 1600.0f;
+			MovementInput = MovementInput.SafeNormal() * mouseSensitivity;
 			FVector NewLocation = GetActorLocation();
 			NewLocation += GetActorUpVector() * MovementInput.X * DeltaTime;
 			NewLocation += GetActorRightVector() * MovementInput.Y * DeltaTime;
@@ -87,13 +87,13 @@ void APawnWithCamera::SetupPlayerInputComponent(class UInputComponent* InputComp
 void APawnWithCamera::MoveUp(float AxisValue)
 {
 	
-	MovementInput.X = FMath::Clamp<float>(AxisValue, -1.0f, 1.0f) * 0.1f;
+	MovementInput.X = FMath::Clamp<float>(AxisValue, -1.0f, 1.0f);
 }
 
 void APawnWithCamera::MoveRight(float AxisValue)
 {
 	
-	MovementInput.Y = FMath::Clamp<float>(AxisValue, -1.0f, 1.0f) * 0.1f;
+	MovementInput.Y = FMath::Clamp<float>(AxisValue, -1.0f, 1.0f);
 }
 
 void APawnWithCamera::ZoomIn()

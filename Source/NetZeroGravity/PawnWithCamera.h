@@ -22,10 +22,11 @@ public:
 
 protected:	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	UPROPERTY(EditAnywhere)
-	USpringArmComponent* OurCameraSpringArm;
-	UCameraComponent* OurCamera;
 	
+	
+	UPROPERTY(EditAnywhere)
+		float mouseSensitivity;
+
 	//Input variables
 	FVector2D MovementInput;
 	FVector2D CameraInput;
@@ -37,6 +38,5 @@ protected:	// Called when the game starts or when spawned
 	void MoveRight(float AxisValue);
 	
 	void ZoomIn();
-	
 	void ZoomOut();
 };
