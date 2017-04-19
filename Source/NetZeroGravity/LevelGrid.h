@@ -23,11 +23,14 @@ protected:
 	
 	//Variables
 	FVector2D LevelLayout;
+	FVector currentLocation;
+
 	float LevelSpeed;
 	float NodeSize;
+
 	int GridWidth;
 	int GridLength;
 
 	//Functions
-	void MoveGrid(float AxisValue);
+	void MoveGrid();
 };

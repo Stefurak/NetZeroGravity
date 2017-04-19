@@ -21,6 +21,9 @@ APawnWithCamera::APawnWithCamera()
 	//OurCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("GameCamera"));
 	//OurCamera->SetupAttachment(OurCameraSpringArm, USpringArmComponent::SocketName);
 
+	//Cursor Sensitivity
+	mouseSensitivity = 500.0f;
+
 	//Take control of the default Player
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
 }
@@ -55,16 +58,19 @@ void APawnWithCamera::Tick( float DeltaTime )
 
 	//Handle movement based on our "MoveX" and "MoveY" axes
 	{
+
 		if (!MovementInput.IsZero())
 		{
+			FVector NewLocation = GetActorLocation();
+
 			//Scale our movement input axis values by 100 units per second
 			MovementInput = MovementInput.SafeNormal() * mouseSensitivity;
-			FVector NewLocation = GetActorLocation();
 			NewLocation += GetActorUpVector() * MovementInput.X * DeltaTime;
 			NewLocation += GetActorRightVector() * MovementInput.Y * DeltaTime;
-			
+
 			SetActorLocation(NewLocation);
 		}
+
 	}
 }
 
@@ -95,6 +101,12 @@ void APawnWithCamera::MoveRight(float AxisValue)
 	
 	MovementInput.Y = FMath::Clamp<float>(AxisValue, -1.0f, 1.0f);
 }
+
+void APawnWithCamera::MoveForward(float AxisValue) {
+
+
+}
+
 
 void APawnWithCamera::ZoomIn()
 {
