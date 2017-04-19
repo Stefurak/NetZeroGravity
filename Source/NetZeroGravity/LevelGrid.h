@@ -32,5 +32,6 @@ protected:
 	int GridLength;
 
 	//Functions
+	void MoveForward();
 	void MoveGrid();
 };

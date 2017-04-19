@@ -9,7 +9,7 @@ ALevelGrid::ALevelGrid()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	LevelSpeed = 15.0f;
+	LevelSpeed = 10.0f;
 
 }
 
@@ -24,14 +24,19 @@ void ALevelGrid::BeginPlay()
 void ALevelGrid::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
-	MoveGrid();
+	MoveForward();
 }
 
 //Moves the level forward
-void ALevelGrid::MoveGrid() {
+void ALevelGrid::MoveForward() {
 	FVector NewLocation = GetActorLocation();
 	NewLocation.X -= LevelSpeed;
 
 	SetActorLocation(NewLocation);
 }
 
+//More complicated level movement here
+void ALevelGrid::MoveGrid() {
+
+
+}

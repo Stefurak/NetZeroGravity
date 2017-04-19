@@ -26,6 +26,14 @@ public:
 	float XTargetRandom;
 	float YTargetRandom;
 
-	
+	//Variables
+	FVector currentLocation;
+	FVector resetEnemyLocation;
+	FVector maxEnemyLocation;
+	float LevelSpeed;
+
+	//Functions
+	void MoveForward(FVector);
+	void MoveBackwards();
 	
 };
